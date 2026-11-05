@@ -5,7 +5,8 @@ import {
 } from "discord.js";
 
 import { config } from "./config";
-import { sendMessage } from "./messageService";
+import { createPanel } from "./ui/panelService";
+import { registerInteractionEvents } from "./ui/events/interactionCreate";
 
 export const client = new Client({
     intents: [
@@ -13,17 +14,15 @@ export const client = new Client({
     ]
 });
 
+registerInteractionEvents(client);
+
 client.once(Events.ClientReady, async (readyClient) => {
     console.log(`Logged in as ${readyClient.user.tag}`);
 
     try {
-        await sendMessage(
-            client,
-            config.channelId,
-            "Hello! The bot is now online."
-        );
+        await createPanel(client);
     } catch (error) {
-        console.error("Failed to send message:", error);
+        console.error("Failed to create panel:", error);
     }
 });
 
