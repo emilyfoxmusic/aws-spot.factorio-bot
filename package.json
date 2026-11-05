@@ -1,0 +1,28 @@
+{
+  "name": "aws-spot.factorio-bot",
+  "version": "1.0.0",
+  "description": "A factorio bot for managing factorio servers in AWS (spot).",
+  "homepage": "https://github.com/emilyfoxmusic/aws-spot.factorio-bot#readme",
+  "bugs": {
+    "url": "https://github.com/emilyfoxmusic/aws-spot.factorio-bot/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emilyfoxmusic/aws-spot.factorio-bot.git"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.0.0",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}
