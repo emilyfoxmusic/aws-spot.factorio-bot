@@ -4,8 +4,11 @@ import {
     ButtonInteraction,
     ButtonBuilder,
     ButtonStyle,
-    ActionRowBuilder
+    ActionRowBuilder,
+    MessageFlags
 } from "discord.js";
+
+import { startedContainer, stoppedContainer } from '../panelService';
 
 export function registerInteractionEvents(client: Client): void {
     client.on(Events.InteractionCreate, async (interaction) => {
@@ -22,19 +25,11 @@ async function handlePanelButton(
 ): Promise<void> {
     const isStarting = interaction.component.label === "Start";
 
-    const button = new ButtonBuilder()
-        .setCustomId("panel_toggle")
-        .setLabel(isStarting ? "Stop" : "Start")
-        .setStyle(
-            isStarting
-                ? ButtonStyle.Danger
-                : ButtonStyle.Success
-        );
+    console.log(interaction.component.label);
 
-    const row = new ActionRowBuilder<ButtonBuilder>()
-        .addComponents(button);
 
     await interaction.update({
-        components: [row]
+        components: [isStarting ? startedContainer : stoppedContainer],
+        flags: MessageFlags.IsComponentsV2,
     });
 }
