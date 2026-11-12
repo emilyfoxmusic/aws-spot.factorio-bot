@@ -1,38 +1,41 @@
-import {
-  Client,
-  Events,
-  ButtonInteraction,
-  MessageFlags,
-  ButtonStyle,
-} from "discord.js";
-
-import { startedContainer, stoppedContainer } from "../panelService";
+import { ButtonInteraction, Client, Events, MessageFlags } from "discord.js";
+import { stoppedContainer } from "../components/stopped";
+import { games } from "../../data/games";
+import { startedContainer } from "../components/started";
 
 export function registerInteractionEvents(client: Client): void {
   client.on(Events.InteractionCreate, (interaction) => {
     if (!interaction.isButton()) return;
 
-    if (interaction.customId !== "panel_toggle") return;
-
-    handlePanelButton(interaction).catch((error: unknown) => {
-      console.error("Error handling panel button:", error);
-    });
+    switch (interaction.customId) {
+      case "panel_start":
+      case "panel_toggle":
+      case "panel_backup":
+        handleStart(interaction).catch((error: unknown) => {
+          console.error("Error starting game:", error);
+        });
+        break;
+      case "panel_stop":
+        handleStop(interaction).catch((error: unknown) => {
+          console.error("Error stopping game:", error);
+        });
+        break;
+      default:
+        throw new Error(`Action ${interaction.customId} is not known`);
+    }
   });
 }
 
-async function handlePanelButton(
-  interaction: ButtonInteraction,
-): Promise<void> {
-  const component = interaction.component;
-
-  if (component.style === ButtonStyle.Premium) return;
-
-  const isStarting = component.label === "Start";
-
-  console.log(component.label);
-
+async function handleStart(interaction: ButtonInteraction) {
   await interaction.update({
-    components: [isStarting ? startedContainer : stoppedContainer],
+    components: [startedContainer(games[0])],
+    flags: MessageFlags.IsComponentsV2,
+  });
+}
+
+async function handleStop(interaction: ButtonInteraction) {
+  await interaction.update({
+    components: [stoppedContainer(games[1])],
     flags: MessageFlags.IsComponentsV2,
   });
 }

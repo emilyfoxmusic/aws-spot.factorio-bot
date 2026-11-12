@@ -4,7 +4,8 @@ dotenv.config();
 
 export const config = {
   discordToken: process.env.DISCORD_TOKEN,
-  channelId: "793291321300484096",
+  channelId: "1568013767789518938",
+  eventChannelId: "1568621521184890950",
 };
 
 if (!config.discordToken) {
