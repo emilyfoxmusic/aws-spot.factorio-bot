@@ -10,14 +10,12 @@ export const client = new Client({
 
 registerInteractionEvents(client);
 
-client.once(Events.ClientReady, async (readyClient) => {
+client.once(Events.ClientReady, (readyClient) => {
   console.log(`Logged in as ${readyClient.user.tag}`);
 
-  try {
-    await createPanel(client);
-  } catch (error) {
+  createPanel(client).catch((error: unknown) => {
     console.error("Failed to create panel:", error);
-  }
+  });
 });
 
 export async function startBot(): Promise<void> {
