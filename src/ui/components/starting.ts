@@ -1,10 +1,10 @@
 import { ButtonBuilder, ButtonStyle } from "discord.js";
 import { commonButtons, commonContainer } from "./common";
-import { Game } from "../../data/games";
+import { Game } from "../../models/game";
 
-export const startingContainer = (game: Game) =>
-  commonContainer(game)
-    .setAccentColor(0xFFDC42)
+export const startingContainer = (name: string, isSpaceAge: boolean) =>
+  commonContainer(name, isSpaceAge)
+    .setAccentColor(0xffdc42)
     .addTextDisplayComponents((textDisplay) =>
       textDisplay.setContent(":hourglass: **Status**: starting up..."),
     )

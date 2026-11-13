@@ -1,14 +1,11 @@
 import { ButtonBuilder, ButtonStyle, ContainerBuilder } from "discord.js";
-import { Game } from "../../data/games";
 
-export const commonContainer = (game: Game) =>
-  new ContainerBuilder()
-    .setAccentColor(0x0099ff)
-    .addTextDisplayComponents((textDisplay) =>
-      textDisplay.setContent(
-        `# ${game.isSpaceAge ? ":rocket:" : ":construction_worker:"} ${game.name}`,
-      ),
-    );
+export const commonContainer = (name: string, isSpaceAge: boolean) =>
+  new ContainerBuilder().addTextDisplayComponents((textDisplay) =>
+    textDisplay.setContent(
+      `# ${isSpaceAge ? ":rocket:" : ":construction_worker:"} ${name}`,
+    ),
+  );
 
 export const commonButtons = [
   new ButtonBuilder()
