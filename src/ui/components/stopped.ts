@@ -4,6 +4,7 @@ import { Game } from "../../data/games";
 
 export const stoppedContainer = (game: Game) =>
   commonContainer(game)
+    .setAccentColor(0xc41414)
     .addTextDisplayComponents((textDisplay) =>
       textDisplay.setContent(":no_entry: **Status**: stopped"),
     )

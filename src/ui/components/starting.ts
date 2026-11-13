@@ -4,6 +4,7 @@ import { Game } from "../../data/games";
 
 export const startingContainer = (game: Game) =>
   commonContainer(game)
+    .setAccentColor(0xFFDC42)
     .addTextDisplayComponents((textDisplay) =>
       textDisplay.setContent(":hourglass: **Status**: starting up..."),
     )

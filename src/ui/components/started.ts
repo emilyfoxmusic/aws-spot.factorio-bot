@@ -4,6 +4,7 @@ import { Game } from "../../data/games";
 
 export const startedContainer = (game: Game) =>
   commonContainer(game)
+    .setAccentColor(0x0099ff)
     .addTextDisplayComponents((textDisplay) =>
       textDisplay.setContent(
         ":arrows_counterclockwise: **Status**: running\n" +
