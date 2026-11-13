@@ -10,7 +10,7 @@ import { stoppedContainer } from "../components/stopped";
 import { startedContainer } from "../components/started";
 import { getGameByMessageId } from "../../metadata/gamesRepository";
 import { handleGameCreateModal } from "./handleCreateGameModal";
-import * as createGameCommand from "../../commands/createGame";
+import * as createGameCommand from "../commands/createGame";
 
 export function registerInteractionEvents(client: Client): void {
   client.on(Events.InteractionCreate, (interaction) => {

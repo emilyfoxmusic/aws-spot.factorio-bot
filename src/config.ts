@@ -9,6 +9,8 @@ export const config = {
 
   // discord
   discordToken: process.env.DISCORD_TOKEN,
+  clientId: ,
+  guildId: ,
   channelId: "1568013767789518938",
   eventChannelId: "1568621521184890950",
 };

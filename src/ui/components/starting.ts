@@ -1,6 +1,5 @@
 import { ButtonBuilder, ButtonStyle } from "discord.js";
 import { commonButtons, commonContainer } from "./common";
-import { Game } from "../../models/game";
 
 export const startingContainer = (name: string, isSpaceAge: boolean) =>
   commonContainer(name, isSpaceAge)
