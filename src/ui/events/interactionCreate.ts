@@ -7,8 +7,6 @@ export function registerInteractionEvents(client: Client): void {
   client.on(Events.InteractionCreate, (interaction) => {
     if (!interaction.isButton()) return;
 
-    console.log(interaction.message.id);
-
     const game = games.find((game) => game.panelId === interaction.message.id);
 
     if (!game) {
