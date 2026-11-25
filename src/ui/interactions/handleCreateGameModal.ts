@@ -1,9 +1,4 @@
-
-import {
-  ModalSubmitInteraction,
-  Message,
-  MessageFlags,
-} from "discord.js";
+import { ModalSubmitInteraction, Message, MessageFlags } from "discord.js";
 
 import { registerGame } from "../../metadata/gamesRepository";
 import { config } from "../../config";
@@ -12,12 +7,9 @@ import { startedContainer } from "../components/started";
 export async function handleGameCreateModal(
   interaction: ModalSubmitInteraction,
 ): Promise<void> {
-  const name = interaction.fields
-    .getTextInputValue("game-name")
-    .trim();
+  const name = interaction.fields.getTextInputValue("game-name").trim();
 
-  const isSpaceAge = interaction.fields
-    .getCheckbox("game-space-age");
+  const isSpaceAge = interaction.fields.getCheckbox("game-space-age");
 
   if (!name) {
     await interaction.reply({
@@ -35,9 +27,7 @@ export async function handleGameCreateModal(
 
   try {
     // Fetch the configured panel channel
-    const channel = await interaction.client.channels.fetch(
-      config.channelId,
-    );
+    const channel = await interaction.client.channels.fetch(config.channelId);
 
     if (!channel || !channel.isTextBased() || !channel.isSendable()) {
       throw new Error("Configured panel channel is not sendable.");
@@ -61,7 +51,11 @@ export async function handleGameCreateModal(
       config.eventChannelId,
     );
 
-    if (!eventChannel || !eventChannel.isTextBased() || !eventChannel.isSendable()) {
+    if (
+      !eventChannel ||
+      !eventChannel.isTextBased() ||
+      !eventChannel.isSendable()
+    ) {
       throw new Error("Configured event channel is not sendable.");
     }
 
@@ -79,7 +73,6 @@ export async function handleGameCreateModal(
     await interaction.editReply({
       content: `Successfully created **${game.name}**!`,
     });
-
   } catch (error) {
     console.error("Failed to create game:", error);
 
@@ -88,10 +81,7 @@ export async function handleGameCreateModal(
       try {
         await panelMessage.delete();
       } catch (cleanupError) {
-        console.error(
-          "Failed to delete orphaned panel:",
-          cleanupError,
-        );
+        console.error("Failed to delete orphaned panel:", cleanupError);
       }
     }
 

@@ -73,7 +73,7 @@ async function handleChatInputCommand(interaction: CommandInteraction) {
 
 async function handleModalSubmit(interaction: ModalSubmitInteraction) {
   switch (interaction.customId) {
-    case 'create-game-modal':
+    case "create-game-modal":
       await handleGameCreateModal(interaction);
       break;
     default:
