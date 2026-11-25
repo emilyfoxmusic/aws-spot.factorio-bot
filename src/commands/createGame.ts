@@ -4,13 +4,14 @@ import {
   TextInputBuilder,
   TextInputStyle,
   LabelBuilder,
+  ChatInputCommandInteraction,
 } from "discord.js";
 
 export const data = new SlashCommandBuilder()
   .setName("create-game")
   .setDescription("Create a new Factorio game in AWS");
 
-export async function execute(interaction: unknown) {
+export async function execute(interaction: ChatInputCommandInteraction) {
   const nameInput = new TextInputBuilder()
     .setCustomId("game-name")
     .setStyle(TextInputStyle.Short)
