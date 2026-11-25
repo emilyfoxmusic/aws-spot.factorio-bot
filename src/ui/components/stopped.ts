@@ -1,9 +1,8 @@
 import { ButtonBuilder, ButtonStyle } from "discord.js";
 import { commonButtons, commonContainer } from "./common";
-import { Game } from "../../data/games";
 
-export const stoppedContainer = (game: Game) =>
-  commonContainer(game)
+export const stoppedContainer = (name: string, isSpaceAge: boolean) =>
+  commonContainer(name, isSpaceAge)
     .setAccentColor(0xc41414)
     .addTextDisplayComponents((textDisplay) =>
       textDisplay.setContent(":no_entry: **Status**: stopped"),

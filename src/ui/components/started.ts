@@ -1,9 +1,8 @@
 import { ButtonBuilder, ButtonStyle } from "discord.js";
 import { commonButtons, commonContainer } from "./common";
-import { Game } from "../../data/games";
 
-export const startedContainer = (game: Game) =>
-  commonContainer(game)
+export const startedContainer = (name: string, isSpaceAge: boolean) =>
+  commonContainer(name, isSpaceAge)
     .setAccentColor(0x0099ff)
     .addTextDisplayComponents((textDisplay) =>
       textDisplay.setContent(

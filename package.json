@@ -21,6 +21,8 @@
     "format:fix": "prettier --write ."
   },
   "dependencies": {
+    "@aws-sdk/lib-dynamodb": "^3.1169.0",
+    "aws-cdk": "^2.1148.1",
     "discord.js": "^14.0.0",
     "dotenv": "^16.0.0"
   },
