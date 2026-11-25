@@ -1,5 +1,6 @@
 import {
   ButtonInteraction,
+  ChatInputCommandInteraction,
   Client,
   CommandInteraction,
   Events,
@@ -64,7 +65,9 @@ async function handleButton(interaction: ButtonInteraction) {
 async function handleChatInputCommand(interaction: CommandInteraction) {
   switch (interaction.commandName) {
     case "create-game":
-      await createGameCommand.execute(interaction);
+      await createGameCommand.execute(
+        interaction as ChatInputCommandInteraction,
+      );
       break;
     default:
       throw new Error(`Action ${interaction.commandName} is not known`);
